@@ -21,11 +21,20 @@ function love.load()
   c.x = 0
   c.y = 100
 
-  score = 9990
+  score = 0
 
   newgame = 0
 
   continue = 0
+
+  purple = 0.50,0.00,0.42
+  blue = 0, 0, 255
+  green = 0, 255, 0
+  yellow = 1.00,1.00,0.00
+  orange = 1.00,0.67,0.00
+  red = 255, 0, 0
+
+  color = red
 end
 
 function love.update(dt)
@@ -38,8 +47,26 @@ function love.draw()
   love.graphics.setColor(255, 255, 0)
   love.graphics.draw(c.text, c.x, c.y)
   if newgame == 1 then
+    score = 0
     function love.draw()
-      love.graphics.setColor(255, 0, 0)
+      love.graphics.setColor(color)
+      love.graphics.circle("fill", button.x, button.y, button.size)
+      love.graphics.setFont(myFont)
+      love.graphics.setColor(255, 255, 255)
+      love.graphics.print("Score: " ..score)
+
+      if score == 9999 then
+        function love.draw()
+          love.graphics.setColor(0, 255, 0)
+          love.graphics.print("You win!!!", 25, 100)
+          love.graphics.setColor(255, 0, 0)
+          love.graphics.draw(quit.text, quit.x, quit.y)
+        end
+      end
+    end
+  elseif continue == 1 then
+    function love.draw()
+      love.graphics.setColor(color)
       love.graphics.circle("fill", button.x, button.y, button.size)
       love.graphics.setFont(myFont)
       love.graphics.setColor(255, 255, 255)
@@ -61,6 +88,20 @@ function love.mousepressed(x, y, b, isTouch)
   if b == 1 then
     if distanceBetween(button.x, button.y, love.mouse.getX(), love.mouse.getY()) < button.size then
       score = score + 1
+      xyz = math.random(1, 6)
+      if xyz == 1 then
+        color = red
+      elseif xyz == 2 then
+        color = orange
+      elseif xyz == 3 then
+        color = yellow
+      elseif xyz == 4 then
+        color = green
+      elseif xyz == 5 then
+        color = blue
+      elseif xyz == 6 then
+        color = purple
+      end
     end
   end
   if x >= quit.x and x <= quit.x + quit.text:getWidth() and
