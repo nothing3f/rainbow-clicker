@@ -27,14 +27,14 @@ function love.load()
 
   continue = 0
 
-  purple = 0.50,0.00,0.42
+  --[[purple = 0.50,0.00,0.42
   blue = 0, 0, 255
   green = 0, 255, 0
   yellow = 1.00,1.00,0.00
   orange = 1.00,0.67,0.00
-  red = 255, 0, 0
+  red = 255, 0, 0]]--
 
-  color = red
+  xyz = 1
 end
 
 function love.update(dt)
@@ -49,7 +49,19 @@ function love.draw()
   if newgame == 1 then
     score = 0
     function love.draw()
-      love.graphics.setColor(color)
+      if xyz == 1 then
+        love.graphics.setColor(255, 0, 0)
+      elseif xyz == 2 then
+        love.graphics.setColor(1.00,0.67,0.00)
+      elseif xyz == 3 then
+        love.graphics.setColor(1.00,1.00,0.00)
+      elseif xyz == 4 then
+        love.graphics.setColor(0, 255, 0)
+      elseif xyz == 5 then
+        love.graphics.setColor(0, 0, 255)
+      elseif xyz == 6 then
+        love.graphics.setColor(0.50,0.00,0.42)
+      end
       love.graphics.circle("fill", button.x, button.y, button.size)
       love.graphics.setFont(myFont)
       love.graphics.setColor(255, 255, 255)
@@ -66,7 +78,19 @@ function love.draw()
     end
   elseif continue == 1 then
     function love.draw()
-      love.graphics.setColor(color)
+      if xyz == 1 then
+        love.graphics.setColor(255, 0, 0)
+      elseif xyz == 2 then
+        love.graphics.setColor(1.00,0.67,0.00)
+      elseif xyz == 3 then
+        love.graphics.setColor(1.00,1.00,0.00)
+      elseif xyz == 4 then
+        love.graphics.setColor(0, 255, 0)
+      elseif xyz == 5 then
+        love.graphics.setColor(0, 0, 255)
+      elseif xyz == 6 then
+        love.graphics.setColor(0.50,0.00,0.42)
+      end
       love.graphics.circle("fill", button.x, button.y, button.size)
       love.graphics.setFont(myFont)
       love.graphics.setColor(255, 255, 255)
@@ -89,19 +113,6 @@ function love.mousepressed(x, y, b, isTouch)
     if distanceBetween(button.x, button.y, love.mouse.getX(), love.mouse.getY()) < button.size then
       score = score + 1
       xyz = math.random(1, 6)
-      if xyz == 1 then
-        color = red
-      elseif xyz == 2 then
-        color = orange
-      elseif xyz == 3 then
-        color = yellow
-      elseif xyz == 4 then
-        color = green
-      elseif xyz == 5 then
-        color = blue
-      elseif xyz == 6 then
-        color = purple
-      end
     end
   end
   if x >= quit.x and x <= quit.x + quit.text:getWidth() and
