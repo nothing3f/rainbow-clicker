@@ -42,8 +42,8 @@ function love.update(dt)
 end
 
 function love.draw()
-  local ngame = require "newgame"
-  local cgame = require "continue"
+  local ngame = require "scripts.newgame"
+  local cgame = require "scripts.continue"
   love.graphics.setColor(0, 0, 255)
   love.graphics.draw(n.text, n.x, n.y)
   love.graphics.setColor(255, 255, 0)
@@ -56,8 +56,9 @@ function love.draw()
 end
 
 function love.mousepressed(x, y, b, isTouch)
-  if b == 1 then
-    if distanceBetween(button.x, button.y, love.mouse.getX(), love.mouse.getY()) < button.size then
+  local distance = require "scripts.distance"
+if b == 1 then
+    if distance.distanceBetween(button.x, button.y, love.mouse.getX(), love.mouse.getY()) < button.size then
       score = score + 1
       xyz = math.random(1, 6)
     end
@@ -74,8 +75,4 @@ function love.mousepressed(x, y, b, isTouch)
      y >= c.y and y <= c.y + c.text:getHeight() then
     continue = 1
   end
-end
-
-function distanceBetween(x1, y1, x2, y2)
-  return math.sqrt((y2 - y1)^2 + (x2 - x1)^2)
 end
