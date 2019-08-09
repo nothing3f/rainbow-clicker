@@ -18,7 +18,7 @@ function Continue()
     love.graphics.circle("fill", button.x, button.y, button.size)
     love.graphics.setFont(myFont)
     love.graphics.setColor(255, 255, 255)
-    love.graphics.print("Score: " ..score)
+    love.graphics.print("Score: " ..s.score)
 
     if score == 9999 then
       function love.draw()

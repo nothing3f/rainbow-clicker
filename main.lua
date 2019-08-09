@@ -1,4 +1,13 @@
 function love.load()
+  json = require('json')
+
+  s = {}
+  s.score = 0
+
+  jsonScore = json.encode(s)
+
+  result = json.decode(jsonScore)
+
   myFont = love.graphics.newFont(40)
 
   button = {}
@@ -20,8 +29,6 @@ function love.load()
   c.text = love.graphics.newText(myFont, "  Continue")
   c.x = 0
   c.y = 100
-
-  score = 0
 
   newgame = 0
 
@@ -59,7 +66,7 @@ function love.mousepressed(x, y, b, isTouch)
   local distance = require "scripts.distance"
 if b == 1 then
     if distance.distanceBetween(button.x, button.y, love.mouse.getX(), love.mouse.getY()) < button.size then
-      score = score + 1
+      s.score = s.score + 1
       xyz = math.random(1, 6)
     end
   end
