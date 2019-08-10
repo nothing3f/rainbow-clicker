@@ -4,7 +4,4 @@ function love.conf(t)
 	t.window.width = 250
 	t.window.height = 250
 	t.identity = "rainbow-clicker"
-
-	-- For Windows debugging
-	t.console = false
 end
