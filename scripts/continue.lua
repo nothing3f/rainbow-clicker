@@ -1,6 +1,7 @@
 local C = {}
 
 function Continue()
+  s.score = s.score - 1
   function love.draw()
     if xyz == 1 then
       love.graphics.setColor(255, 0, 0)
@@ -19,7 +20,6 @@ function Continue()
     love.graphics.setFont(myFont)
     love.graphics.setColor(255, 255, 255)
     love.graphics.print("Score: " ..s.score)
-
     if score == 9999 then
       function love.draw()
         love.graphics.setColor(0, 255, 0)

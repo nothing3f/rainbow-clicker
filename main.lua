@@ -1,12 +1,14 @@
 function love.load()
-  json = require('json')
+  file = io.open("text.lua", "r")
+  x = file:read()
+  file:close()
 
   s = {}
-  s.score = 0
+  s.score = tonumber(x)
 
-  jsonScore = json.encode(s)
-
-  result = json.decode(jsonScore)
+  if x == nil then
+    s.score = 0
+  end
 
   myFont = love.graphics.newFont(40)
 
@@ -68,6 +70,9 @@ if b == 1 then
     if distance.distanceBetween(button.x, button.y, love.mouse.getX(), love.mouse.getY()) < button.size then
       s.score = s.score + 1
       xyz = math.random(1, 6)
+      file = io.open("text.lua", "w")
+      file:write(s.score)
+      file:close()
     end
   end
   if x >= quit.x and x <= quit.x + quit.text:getWidth() and
