@@ -3,6 +3,7 @@ function love.conf(t)
 	t.version = "11.2"
 	t.window.width = 250
 	t.window.height = 250
+	t.identity = "Rainbow clicker"
 
 	-- For Windows debugging
 	t.console = false
