@@ -1,5 +1,5 @@
 function love.load()
-  file = io.open("text.lua", "r")
+  file = io.open("data/text.lua", "r")
   x = file:read()
   file:close()
 
@@ -70,7 +70,7 @@ if b == 1 then
     if distance.distanceBetween(button.x, button.y, love.mouse.getX(), love.mouse.getY()) < button.size then
       s.score = s.score + 1
       xyz = math.random(1, 6)
-      file = io.open("text.lua", "w")
+      file = io.open("data/text.lua", "w")
       file:write(s.score)
       file:close()
     end
