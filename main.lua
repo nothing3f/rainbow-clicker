@@ -1,10 +1,10 @@
 function love.load()
-  json = require("json")
-
-  jsonData = json.decode(love.filesystem.read("data/JSON.json"))
+  file = io.open("data/data.json", "r")
+  x = file:read()
+  file:close()
 
   s = {}
-  s.score = jsonData
+  s.score = tonumber(x)
 
   if x == nil then
     s.score = 0
@@ -70,8 +70,9 @@ if b == 1 then
     if distance.distanceBetween(button.x, button.y, love.mouse.getX(), love.mouse.getY()) < button.size then
       s.score = s.score + 1
       xyz = math.random(1, 6)
-      score = tostring(s.score)
-      jsonData = json.encode(love.filesystem.write("data/JSON.json", score))
+      file = io.open("data/data.json", "w")
+      file:write(s.score)
+      file:close()
     end
   end
   if x >= quit.x and x <= quit.x + quit.text:getWidth() and
