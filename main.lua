@@ -1,12 +1,10 @@
 function love.load()
-  file = io.open("data/data.json", "r")
-  x = file:read()
-  file:close()
+  contents, size = love.filesystem.read("data.json")
 
   s = {}
-  s.score = tonumber(x)
+  s.score = tonumber(contents)
 
-  if x == nil then
+  if contents == nil then
     s.score = 0
   end
 
@@ -70,9 +68,7 @@ if b == 1 then
     if distance.distanceBetween(button.x, button.y, love.mouse.getX(), love.mouse.getY()) < button.size then
       s.score = s.score + 1
       xyz = math.random(1, 6)
-      file = io.open("data/data.json", "w")
-      file:write(s.score)
-      file:close()
+      love.filesystem.write("data.json", s.score)
     end
   end
   if x >= quit.x and x <= quit.x + quit.text:getWidth() and
