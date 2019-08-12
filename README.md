@@ -1,2 +1,2 @@
 # Rainbow clicker
-🌈Simple rainbow clicker in with use LÖVE. 🌈
+🌈Simple rainbow clicker in Lua with use LÖVE. 🌈
